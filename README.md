@@ -39,5 +39,4 @@ docker run -d -p 8080:8080 -p 50000:50000 -v /Users/apple/jenkins:/var/jenkins_h
 git clone https://github.com/haxqer/jira.git
 cd jira 
 docker-compose up
-
 ```
