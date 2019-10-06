@@ -92,8 +92,8 @@ docker-compose up
 ### Docker install Crawlab
 docker-compose.yml
 ```
-version: '3.3'  # Docker Compose 的版本号（请看后续说明）
-services:  # 服务
+version: '3.3' 
+services:  
   master:  # 服务名称
     image: tikazyq/crawlab:latest  # 服务对应的镜像名称
     container_name: master  # 服务对应的容器名称
@@ -130,23 +130,21 @@ services:  # 服务
       - "6379:6379"
 ```
 
-### Docker install ambari
-
+### Docker install ambari (hadoop+spark+hive)
+docker pull
 ```
-Hadoop集群的搭建往往是一件很费力的事情，部署人员也许会消耗很长的时间部署和调试，Ambari把Hadoop集群的部署成本大大降低了，但是能否再更进一步的简化部署，降低部署的人力成本呢？
-这时候我们想到了Docker技术。
-先从单节点做起。
-这里我做好了一个镜像放到了阿里云上
 docker pull registry.cn-hangzhou.aliyuncs.com/guoyun/ambari
-下载后 运行
+```
+docker run
+```
 docker run -h fb34ae151c81 --name ambari_onenode -d -p 2222:22 -p 8888:8080 registry.cn-hangzhou.aliyuncs.com/guoyun/ambari /usr/sbin/sshd -D
-然后依次运行下列两个命令
+```
+docker exec
+```
 docker exec ambari_onenode /usr/init.sh
 docker exec ambari_onenode /usr/start.sh
-脚本中包含了启动Ambari引擎，设置Ambari，启动Ambari所有服务等命令，当然也可以手动ssh到docker内部执行。
-直接访问宿主机8888端口即可看到Ambari管理页面
-单节点16g内存，包含常用的组件，如hdfs，hive，spark等。
 ```
+
 ### Docker install Rasa-UI 
 docker-compose.yml
 ```
