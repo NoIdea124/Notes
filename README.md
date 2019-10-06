@@ -34,9 +34,30 @@ docker run -d -p 8080:8080 -p 50000:50000 -v /Users/apple/jenkins:/var/jenkins_h
 ```
 
 ### Docker install Jira
+Get docker-compose.yml
 
 ```
 git clone https://github.com/haxqer/jira.git
+```
+Docker-compose up
+```
 cd jira 
 docker-compose up
+```
+
+### Docker install confluence 
+
+Get docker-compose.yml
+```
+git clone https://github.com/EugenMayer/docker-image-atlassian-confluence.git
+```
+Docker-compose up
+```
+docker-compose up
+```
+Create Database
+```
+dc exec mysql
+mysql -pverybigsecretrootpassword -e 'drop database confluencedb;'
+mysql -pverybigsecretrootpassword -e 'CREATE DATABASE confluencedb CHARACTER SET utf8 COLLATE utf8_bin;'
 ```
