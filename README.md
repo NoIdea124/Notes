@@ -10,7 +10,7 @@ docker pull
 docker pull gitlab/gitlab-ce
 docker network create gitlab_net
 ```
-mkdir
+mkdir for volume
 ```shell
 mkdir /Users/apple/gitlab/config
 mkdir /Users/apple/gitlab/logs
@@ -34,12 +34,12 @@ docker run -d -p 8080:8080 -p 50000:50000 -v /Users/apple/jenkins:/var/jenkins_h
 ```
 
 ### Docker install Jira
-Get docker-compose.yml
+docker-compose.yml
 
 ```
 git clone https://github.com/haxqer/jira.git
 ```
-Docker-compose up
+docker-compose
 ```
 cd jira 
 docker-compose up
@@ -47,15 +47,15 @@ docker-compose up
 
 ### Docker install confluence 
 
-Get docker-compose.yml
+docker-compose.yml
 ```
 git clone https://github.com/EugenMayer/docker-image-atlassian-confluence.git
 ```
-Docker-compose up
+docker-compose
 ```
 docker-compose up
 ```
-Create Database
+docker exec
 ```
 dc exec mysql
 mysql -pverybigsecretrootpassword -e 'drop database confluencedb;'
@@ -74,17 +74,22 @@ docker run -d -p 9200:9200 -p 5601:5601 nshou/elasticsearch-kibana
 ```
 
 ### Docker install neo4j
-
+docker pull
+```
+docker pull neo4j
+```
+docker run
 ```
 docker run -d -p 7474:7474 -p 7687:7687 neo4j
 ```
 
 ### Docker install Rocket.chat
-Get docker-compose.yml
+
+docker-compose.yml
 ```
 curl -L https://raw.githubusercontent.com/RocketChat/Rocket.Chat/develop/docker-compose.yml -o docker-compose.yml
 ```
-Docker-compose
+docker-compose
 ```
 docker-compose up
 ```
@@ -94,21 +99,21 @@ docker-compose.yml
 ```
 version: '3.3' 
 services:  
-  master:  # 服务名称
-    image: tikazyq/crawlab:latest  # 服务对应的镜像名称
-    container_name: master  # 服务对应的容器名称
-    environment:  # 这里定义传入的环境变量
-      CRAWLAB_API_ADDRESS: "localhost:8000"  # 前端调用的 API 地址，默认为 localhost:8000
-      CRAWLAB_SERVER_MASTER: "Y"  # 是否为主节点，Y/N
-      CRAWLAB_MONGO_HOST: "mongo"  # MongoDB host，由于在 Docker Compose 里，可以引用服务名称
-      CRAWLAB_REDIS_ADDRESS: "redis"  # Redis host，由于在 Docker Compose 里，可以引用服务名称
-    ports:  # 映射的端口
-      - "8080:8080" # 前端端口
-      - "8000:8000" # 后端端口
-    depends_on: # 依赖的服务
-      - mongo  # MongoDB
-      - redis  # Redis
-  worker:  # 工作节点，与主节点配置类似，不重复写了
+  master:  
+    image: tikazyq/crawlab:latest  
+    container_name: master  
+    environment: 
+      CRAWLAB_API_ADDRESS: "localhost:8000" 
+      CRAWLAB_SERVER_MASTER: "Y"  
+      CRAWLAB_MONGO_HOST: "mongo" 
+      CRAWLAB_REDIS_ADDRESS: "redis" 
+    ports: 
+      - "8080:8080"
+      - "8000:8000"
+    depends_on: 
+      - mongo  
+      - redis  
+  worker: 
     image: tikazyq/crawlab:latest
     container_name: worker
     environment:
@@ -118,15 +123,15 @@ services:
     depends_on:
       - mongo
       - redis
-  mongo:  # MongoDB 服务名称
-    image: mongo:latest  # MongoDB 镜像名称
-    restart: always  # 重启策略为“总是”
-    ports:  # 映射端口
+  mongo: 
+    image: mongo:latest 
+    restart: always 
+    ports: 
       - "27017:27017"
-  redis:  # Redis 服务名称
-    image: redis:latest  # Redis 镜像名称
-    restart: always  # 重启策略为“总是”
-    ports:  # 映射端口
+  redis: 
+    image: redis:latest
+    restart: always 
+    ports:  
       - "6379:6379"
 ```
 
