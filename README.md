@@ -180,3 +180,16 @@ services:
 
 networks: {rasa-network: {}}
 ```
+### Docker install MLflow
+dockerfile
+```
+git clone https://github.com/Ycallaer/mlflowdocker
+```
+docker build
+```
+docker build -t mlflowserver -f Dockerfile . --no-cache
+```
+docker run 
+```
+docker run -p 5000:5000 --env MLFLOW_SERVER_DEFAULT_ARTIFACT_ROOT=<wasb> --env AZURE_STORAGE_ACCESS_KEY=<access_key> -it mlflowserver:latest
+```
