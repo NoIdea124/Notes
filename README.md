@@ -61,3 +61,14 @@ dc exec mysql
 mysql -pverybigsecretrootpassword -e 'drop database confluencedb;'
 mysql -pverybigsecretrootpassword -e 'CREATE DATABASE confluencedb CHARACTER SET utf8 COLLATE utf8_bin;'
 ```
+
+### Docker install ElasticSearch+Kibana
+
+docker pull
+```
+docker pull nshou/elasticsearch-kibana
+```
+docker run
+```
+docker run -d -p 9200:9200 -p 5601:5601 nshou/elasticsearch-kibana
+```
