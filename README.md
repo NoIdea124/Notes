@@ -15,6 +15,51 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/docker.sock \
 --name dockerui abh1nav/dockerui:latest -e="/docker.sock"
 ```
 
+### Docker install Kubernetes
+
+Docker - Preference - Kubernetes - Enable Kubernetes / Deploy docker... / Show system...
+
+
+kubernetes install kubernetes-dashboard   
+
+download yaml
+```
+wget https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+```
+
+edit image part
+```
+[centos@k8s-master ~]$ vim kubernetes-dashboard.yaml
+......
+ containers:
+      - name: kubernetes-dashboard
+        #image: k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
+        image: registry.cn-hangzhou.aliyuncs.com/google_containers/kubernetes-dashboard-amd64:v1.10.1
+        ports:
+......
+```
+
+kubernetes deploy
+```
+kubectl create -f kubernetes-dashboard.yaml
+```
+
+kubernetes-dashboard secrets   
+
+```
+kubectl get secrets
+kubectl describe secrets <enter your secert file name,like:default-token-4xj4w>
+```
+kubernetes-dashboard webserver   
+
+```
+kubectl proxy
+```
+
+open http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#/role?namespace=default
+
+
+
 ### Docker install docker registry
 docker pull
 ```
