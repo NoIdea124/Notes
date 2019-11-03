@@ -270,5 +270,5 @@ docker run -p 5000:5000 --env MLFLOW_SERVER_DEFAULT_ARTIFACT_ROOT=<wasb> --env A
 ### Docker install mlworkspace
 
 ```
-docker run -d -p 8080:8080 --name "ml-workspace" -v "C:\Users\MJ\Documents\workspace:/workspace" --env AUTHENTICATE_VIA_JUPYTER="mytoken" --shm-size 512m --restart always mltooling/ml-workspace:latest
+docker run -d -p 8080:8080 --name "ml-workspace" -v "C:\Users\MJ\Documents\workspace:/workspace" --env AUTHENTICATE_VIA_JUPYTER="mytoken" --shm-size 2048m --restart always mltooling/ml-workspace:latest
 ```
