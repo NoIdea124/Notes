@@ -78,9 +78,9 @@ docker network create gitlab_net
 ```
 mkdir for volume
 ```shell
-mkdir /Users/apple/gitlab/config
-mkdir /Users/apple/gitlab/logs
-mkdir /Users/apple/gitlab/data
+mkdir /home/gitlab/config
+mkdir /home/gitlab/logs
+mkdir /home/gitlab/data
 ```
 docker run
 ```shell
@@ -88,9 +88,9 @@ docker run --name gitlab -d \
 --net=gitlab_net \
 --publish 1443:443 --publish 18080:80 \
 --restart always \
---volume /Users/apple/gitlab/config:/etc/gitlab \
---volume /Users/apple/gitlab/logs:/var/log/gitlab \
---volume /Users/apple/gitlab/data:/var/opt/gitlab \
+--volume /home/gitlab/config:/etc/gitlab \
+--volume /home/gitlab/logs:/var/log/gitlab \
+--volume /home/gitlab/data:/var/opt/gitlab \
 gitlab/gitlab-ce:latest
 ```
 
