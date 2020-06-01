@@ -1,8 +1,5 @@
-# docker_devops
+# docker notes
 
-Notes for using docker to deploy devops environemnt.
-
-![img](https://img-blog.csdnimg.cn/20181114170553871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x5ZnF5cg==,size_16,color_FFFFFF,t_70)
 ### Docker install docker-ui
 
 docker pull
